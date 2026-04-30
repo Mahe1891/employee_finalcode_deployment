@@ -17,7 +17,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* ===== NAVBAR (SAME AS LOGIN) ===== */
+/* ===== NAVBAR ===== */
 .navbar {
     background: #0f172a;
     padding: 10px 20px;
@@ -27,9 +27,10 @@ body {
     z-index: 1000;
 }
 
+/* ✅ SAME LOGO */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
     padding: 3px;
@@ -37,11 +38,42 @@ body {
     border: 2px solid #ffffff20;
 }
 
+/* ✅ SAME BRAND */
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    max-width: 75%;
+    overflow: hidden;
     color: white !important;
+}
+
+.navbar-brand span {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ✅ SAME TOGGLER */
+.navbar-toggler {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 34px;
+    padding: 0;
+
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar-toggler-icon {
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
 }
 
 .navbar-nav .nav-link {
@@ -72,7 +104,7 @@ body {
     background: #fff;
 }
 
-/* ===== FLASH (SAME AS LOGIN) ===== */
+/* ===== FLASH ===== */
 .flash-box {
     width: 100%;
     max-width: 350px;
@@ -81,7 +113,6 @@ body {
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
-
     animation: fadeIn 0.4s ease, fadeOut 0.4s ease 2s forwards;
 }
 
@@ -97,7 +128,6 @@ body {
     border: 1px solid #ef4444;
 }
 
-/* ANIMATION */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; }
@@ -113,7 +143,7 @@ body {
     border-radius: 20px;
 }
 
-/* ===== FOOTER (SAME AS LOGIN) ===== */
+/* ===== FOOTER ===== */
 .footer {
     background: #0f172a;
     color: #cbd5e1;
@@ -148,13 +178,25 @@ body {
     }
 }
 
+/* EXTRA SMALL */
+@media (max-width: 375px) {
+    .logo {
+        width: 26px;
+        height: 26px;
+    }
+
+    .navbar-brand span {
+        font-size: 12px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 NAVBAR -->
-<nav class="navbar navbar-expand-lg">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
@@ -162,7 +204,8 @@ body {
             <span>Employee Management</span>
         </a>
 
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <button class="navbar-toggler bg-light" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -180,34 +223,30 @@ body {
 <!-- CONTENT -->
 <div class="wrapper">
 
-    <!-- 🔥 FLASH -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash-box flash-{{category}}">
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash-box flash-{{category}}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 
-    <!-- FORM -->
-    <div class="form-card">
+<div class="form-card">
 
-        <h3>Add Employee</h3>
+    <h3>Add Employee</h3>
 
-        <form method="post">
+    <form method="post">
+        <input type="text" class="form-control mb-3" name="ename" placeholder="Employee Name" required>
+        <input type="text" class="form-control mb-3" name="edept" placeholder="Department" required>
+        <input type="number" class="form-control mb-3" name="esalary" placeholder="Salary" required>
+        <input type="text" class="form-control mb-3" name="ephone" placeholder="Phone Number" required>
 
-            <input type="text" class="form-control mb-3" name="ename" placeholder="Employee Name" required>
-            <input type="text" class="form-control mb-3" name="edept" placeholder="Department" required>
-            <input type="number" class="form-control mb-3" name="esalary" placeholder="Salary" required>
-            <input type="text" class="form-control mb-3" name="ephone" placeholder="Phone Number" required>
+        <button class="btn btn-custom w-100">Add Employee</button>
+    </form>
 
-            <button class="btn btn-custom w-100">Add Employee</button>
-
-        </form>
-
-    </div>
+</div>
 
 </div>
 
@@ -247,7 +286,6 @@ body {
 
         <div class="footer-bottom">
             © 2026 All Rights Reserved by MAAHI
-
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* ===== NAVBAR (RESPONSIVE) ===== */
+/* ===== NAVBAR ===== */
 .navbar {
     background: #0f172a;
     padding: 10px 20px;
@@ -27,22 +27,53 @@ body {
     z-index: 1000;
 }
 
+/* ✅ FIXED LOGO */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
     padding: 3px;
     background: #1e293b;
 }
 
+/* ✅ BRAND FIX */
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    max-width: 75%;
+    overflow: hidden;
     color: white !important;
 }
 
+.navbar-brand span {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ✅ SAME TOGGLER */
+.navbar-toggler {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 34px;
+    padding: 0;
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar-toggler-icon {
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
+}
+
+/* NAV LINKS */
 .navbar-nav .nav-link {
     color: #cbd5e1 !important;
     margin-left: 15px;
@@ -58,7 +89,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 80px;
-    padding: 0 15px; /* 🔥 mobile fix */
+    padding: 0 15px;
 }
 
 /* ===== FLASH ===== */
@@ -87,7 +118,7 @@ body {
 /* ===== REGISTER BOX ===== */
 .register-box {
     width: 100%;
-    max-width: 350px; /* 🔥 responsive fix */
+    max-width: 350px;
     padding: 25px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -122,41 +153,46 @@ body {
 }
 
 /* ===== FOOTER ===== */
-.footer {
-    background: #0f172a;
-    color: #cbd5e1;
-    padding: 50px 20px 20px;
-    margin-top: 80px;
-}
+        .footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
 
-.footer h6 { color: #ffffff; }
+        .footer h6 {
+            color: #ffffff;
+        }
 
-.footer a {
-    display: block;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 14px;
-}
+        .footer a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-.footer a:hover { color: #ffffff; }
+        .footer a:hover {
+            color: #ffffff;
+        }
 
-.footer-bottom {
-    border-top: 1px solid #1e293b;
-    margin-top: 30px;
-    padding-top: 15px;
-    text-align: center;
-    font-size: 13px;
-    color: #64748b;
-}
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            margin-top: 30px;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+/* MOBILE */
+@media (max-width: 375px) {
+    .logo {
+        width: 26px;
+        height: 26px;
+    }
 
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(-5px);}
-    to {opacity:1;}
-}
-
-@keyframes fadeOut {
-    to {opacity:0;}
+    .navbar-brand span {
+        font-size: 12px;
+    }
 }
 
 </style>
@@ -164,8 +200,8 @@ body {
 
 <body>
 
-<!-- 🔥 RESPONSIVE NAVBAR -->
-<nav class="navbar navbar-expand-lg">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
@@ -191,41 +227,39 @@ body {
 <!-- CONTENT -->
 <div class="wrapper">
 
-    <!-- FLASH -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% for category, message in messages %}
-        <div class="flash-box flash-{{category}}">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% endwith %}
-
-    <!-- FORM -->
-    <div class="register-box">
-
-        <h2>Register</h2>
-
-        <form action="/register" method="POST">
-            <label>Username</label>
-            <input type="text" class="form-control mb-3" name="username" required>
-
-            <label>Email</label>
-            <input type="email" class="form-control mb-3" name="email" required>
-
-            <label>Password</label>
-            <input type="password" class="form-control mb-3" name="password" required>
-
-            <label>Role</label>
-            <input type="text" class="form-control mb-3" name="role" required>
-
-            <button class="btn btn-custom w-100 mb-3">Register</button>
-        </form>
-
-        <p class="login-text">
-            Already registered? <a href="/" class="login-link">Login</a>
-        </p>
-
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+    <div class="flash-box flash-{{category}}">
+        {{ message }}
     </div>
+{% endfor %}
+{% endwith %}
+
+<div class="register-box">
+
+    <h2>Register</h2>
+
+    <form action="/register" method="POST">
+        <label>Username</label>
+        <input type="text" class="form-control mb-3" name="username" required>
+
+        <label>Email</label>
+        <input type="email" class="form-control mb-3" name="email" required>
+
+        <label>Password</label>
+        <input type="password" class="form-control mb-3" name="password" required>
+
+        <label>Role</label>
+        <input type="text" class="form-control mb-3" name="role" required>
+
+        <button class="btn btn-custom w-100 mb-3">Register</button>
+    </form>
+
+    <p class="login-text">
+        Already registered? <a href="/" class="login-link">Login</a>
+    </p>
+
+</div>
 
 </div>
 
@@ -265,7 +299,6 @@ body {
 
         <div class="footer-bottom">
             © 2026 All Rights Reserved by MAAHI
-
         </div>
     </div>
 </div>

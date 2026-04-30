@@ -27,9 +27,10 @@ body {
     z-index: 1000;
 }
 
+/* ✅ SAME LOGO SIZE */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
     padding: 3px;
@@ -37,11 +38,42 @@ body {
     border: 2px solid #ffffff20;
 }
 
+/* ✅ SAME BRAND FIX */
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    max-width: 75%;
+    overflow: hidden;
     color: white !important;
+}
+
+.navbar-brand span {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ✅ SAME TOGGLER (FROM VIEW PAGE) */
+.navbar-toggler {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 34px;
+    padding: 0;
+
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar-toggler-icon {
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
 }
 
 .navbar-nav .nav-link {
@@ -73,24 +105,20 @@ body {
     border-radius: 12px;
     border: 1px solid #e5e7eb;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-
     transition: 0.3s;
     animation: fadeUp 0.6s ease;
 }
 
-/* HOVER EFFECT */
 .about-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* TITLE */
 .about-card h5 {
     margin-bottom: 10px;
     font-weight: 600;
 }
 
-/* TEXT */
 .about-card p {
     font-size: 14px;
     color: #555;
@@ -99,14 +127,8 @@ body {
 
 /* ANIMATION */
 @keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== FOOTER ===== */
@@ -137,13 +159,25 @@ body {
     color: #64748b;
 }
 
+/* MOBILE */
+@media (max-width: 375px) {
+    .logo {
+        width: 26px;
+        height: 26px;
+    }
+
+    .navbar-brand span {
+        font-size: 12px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-md">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
@@ -151,7 +185,8 @@ body {
             <span>Employee Management</span>
         </a>
 
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <button class="navbar-toggler bg-light" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -166,7 +201,7 @@ body {
     </div>
 </nav>
 
-<!-- 🔥 CARD CONTENT -->
+<!-- CONTENT -->
 <div class="wrapper container">
 
     <h2 class="mb-4 text-center">About Employee Management System</h2>
@@ -175,30 +210,22 @@ body {
 
         <div class="about-card">
             <h5>Modern System</h5>
-            <p>
-                Built using Flask and modern technologies to simplify employee management.
-            </p>
+            <p>Built using Flask and modern technologies to simplify employee management.</p>
         </div>
 
         <div class="about-card">
             <h5>Easy Management</h5>
-            <p>
-                Add, update, view, and delete employee records easily and efficiently.
-            </p>
+            <p>Add, update, view, and delete employee records easily and efficiently.</p>
         </div>
 
         <div class="about-card">
             <h5>Secure Access</h5>
-            <p>
-                Authentication ensures only authorized users can access sensitive data.
-            </p>
+            <p>Authentication ensures only authorized users can access sensitive data.</p>
         </div>
 
         <div class="about-card">
             <h5>Responsive Design</h5>
-            <p>
-                Works smoothly across all devices including mobile and tablets.
-            </p>
+            <p>Works smoothly across all devices including mobile and tablets.</p>
         </div>
 
     </div>
@@ -241,7 +268,6 @@ body {
 
         <div class="footer-bottom">
             © 2026 All Rights Reserved by MAAHI
-
         </div>
     </div>
 </div>

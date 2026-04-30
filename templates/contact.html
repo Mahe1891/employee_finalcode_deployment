@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Contact</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    background: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== NAVBAR (SAME AS LOGIN) ===== */
+.navbar {
+    background: #0f172a;
+    padding: 14px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+    background: #1e293b;
+    border: 2px solid #ffffff20;
+}
+
+.navbar h4 { color: white; }
+
+.navbar a {
+    color: #cbd5e1 !important;
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #ffffff !important;
+}
+
+/* ===== WRAPPER ===== */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+/* ===== FLASH ===== */
+.flash-box {
+    width: 380px;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    animation: fadeIn 0.4s ease, fadeOut 0.4s ease 2s forwards;
+}
+
+.flash-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #10b981;
+}
+
+.flash-danger {
+    background: #fef2f2;
+    color: #7f1d1d;
+    border: 1px solid #ef4444;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-5px); }
+}
+
+/* ===== CONTACT BOX ===== */
+.contact-box {
+    width: 380px;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.contact-box h2 {
+    margin-bottom: 20px;
+}
+
+/* INPUTS */
+.form-control {
+    border-radius: 6px;
+}
+
+/* BUTTON */
+.btn-custom {
+    background: #ffd814;
+    border: 1px solid #fcd200;
+    border-radius: 20px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    padding: 50px 20px 20px;
+    margin-top: 80px;
+}
+
+.footer h6 { color: #ffffff; }
+
+.footer a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer a:hover { color: #ffffff; }
+
+.footer-bottom {
+    border-top: 1px solid #1e293b;
+    margin-top: 30px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container-fluid d-flex align-items-center">
+        <img src="https://static.vecteezy.com/system/resources/previews/020/859/601/non_2x/employee-management-icon-design-free-vector.jpg" class="logo">
+        <h4 class="ms-2">Employee Management</h4>
+
+        <div class="ms-auto">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="wrapper">
+
+    <!-- FLASH -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-box flash-{{category}}">
+            {% if category == 'success' %}✔{% else %}✖{% endif %}
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- CONTACT FORM -->
+    <div class="contact-box">
+
+        <h2>Contact Us</h2>
+
+        <form action="/contact" method="post">
+
+            <div class="mb-3">
+                <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="mb-3">
+                <textarea class="form-control" name="reason" rows="3" placeholder="Your Message" required></textarea>
+            </div>
+
+            <button class="btn btn-custom w-100">Send Message</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <h6>Company</h6>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Product</h6>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Updates</a>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Support</h6>
+                <a href="#">Help Center</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Legal</h6>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Employee Management System
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
